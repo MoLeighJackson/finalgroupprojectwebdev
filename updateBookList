@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Credit for code: W3Schools How To - https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_todo-->
+
+<style>
+
+.topnav {
+    overflow: hidden;
+    background-color: #556B2F;
+    padding: 30px;
+}
+
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ol li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  font-size: 0.8em;
+  transition: 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ol li:nth-child(odd) {
+  background: #87CEEB;
+}
+
+/* Darker background-color on hover */
+ol li:hover {
+  background: #ccc;
+}
+
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #66CDAA;
+  color: white;
+}
+
+/* Style the input box */
+.inputBox {
+  background-color: #556B2F;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+/* Clear floats after input box */
+.inputBox:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+</style>
+</head>
+<body>
+
+<ol id="bookList">
+  <li>Bring on the Blessings | Beverly Jenkins</li>
+  <li>Chaos | Patricia Cornwell</li>
+  <li>Gotcha! | Fern Michaels</li>
+  <li>Heartbreak Hotel | Jonathan Kellerman</li>
+  <li>Mankiller, Colorado | William W. Johnstone</li>
+  <li>Murder, She Meowed | Rita Mae Brown</li>
+  <li>Spirit of the Village | Sandra Sizmur</li>
+  <li>Stolen Prey | John Sandford</li>
+  <li>Stranger in the Moonlight | Jude Deveraux</li>
+  <li>The Frontiersman | William Johnstone</li>
+  <li>The Letters: | Luanne Rice, Joseph Monninger</li>
+  <li>Welcome To The Great Mysterious | Lorna Landvik</li>
+  <li>Yummy Yucky | Leslie Patricelli</li>
+</ol>
+
+<div id="inputBox" class="inputBox">
+  <p style="margin:5px">If you donated books to this library, please add them to the list here:</p>
+  <input type="text" id="myInput" placeholder="Title and Author...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+
+
+<script>
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ol');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("bookList").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
