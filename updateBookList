@@ -107,10 +107,15 @@ input {
 .addBtn:hover {
   background-color: #bbb;
 }
+
+#instructions {
+  font-size: .9em;
+}
+
 </style>
 </head>
 <body>
-
+<h1 id="instructions">If you borrowed a book from this Little Free Library please remove it by clicking the X next to the title and author.</h1>
 <ol id="bookList">
   <li>Bring on the Blessings | Beverly Jenkins</li>
   <li>Chaos | Patricia Cornwell</li>
